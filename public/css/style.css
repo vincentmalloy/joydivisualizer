@@ -159,6 +159,12 @@ audio#sound {
     transform: translate(-50%, -50%);
 }
 
+#credits {
+    width: 100%;
+    font-size:8px;
+    margin-top:-18px;
+}
+
 .hidden {
     display: none;
 }
