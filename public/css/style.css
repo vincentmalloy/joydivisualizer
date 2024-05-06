@@ -160,9 +160,10 @@ audio#sound {
 }
 
 #credits {
+    position:absolute;
+    bottom:0;
     width: 100%;
-    font-size:8px;
-    margin-top:-18px;
+    font-size:1vh;
 }
 
 .hidden {
