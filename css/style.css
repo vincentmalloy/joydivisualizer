@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;700&display=swap');
+
+body {
+    background: #111;
+    color: #fafafa;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    /* make text not selectable */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#wrap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    height: 100%;
+}
+
+.flex{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+#title {
+    position: relative;
+    height: 7.5%;
+}
+
+#artist {
+    position: relative;
+    height: 7.5%;
+}
+
+#album {
+    height: 5%;
+    /* margin-bottom:-11px; */
+}
+
+#progress-bar {
+    position:relative;
+    height:11px;
+}
+#progress-empty {
+    width: 100%;
+    position:absolute;
+    left:0;
+    top:5px;
+    background:#444;
+    height:1px;
+}
+#progress-played {
+    width: 0%;
+    position:absolute;
+    left:0;
+    top:5px;
+    background:#fafafa;
+    height:1px;
+}
+#progress-bar.active{
+    cursor:pointer;
+}
+#progress-bar.active:hover #progress-played{
+    background:#fff;
+    top:4px;
+    height:3px;
+}
+#progress-bar.active:hover #progress-empty{
+    background:#444;
+    top:4px;
+    height:3px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#controls {
+    height: 10%;
+    width: 100%;
+    margin-top: -11px;
+    /* position:relative; */
+}
+#controls .buttons {
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+#controls svg{
+    height: 5vh;
+    cursor:pointer;
+}
+#controls svg *{
+    stroke:grey;
+    fill:none;
+    stroke-width:0.5px
+}
+#controls svg:hover *{
+    stroke:white;
+    fill:none;
+    stroke-width:2px
+}
+
+#canvas {
+    position: relative;
+    height: 70%;
+    /* move to center */
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-top: 1px solid #444;
+}
+
+#audioInput {
+    display: none;
+}
+
+#audioInputLabel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: none;
+    width: 100%;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 100;
+    color: #fafafa;
+    text-align: center;
+}
+#audioInputLabel:hover {
+    color:#fff;
+    font-weight:900;
+}
+audio#sound {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden {
+    display: none;
+}
