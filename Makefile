@@ -2,5 +2,9 @@
 
 .PHONY: deploy
 
+user = simon
+domain = joydivisualizer.things-remote.com
+target_path = /var/www/$(domain)/public
+
 deploy:
-	@rsync -avz --delete public/ joydivisualizer.things-remote.com:/var/www/joydivisualizer.things-remote.com/public
+	@rsync -avz --delete public/ $(user)@$(domain):$(target_path)
