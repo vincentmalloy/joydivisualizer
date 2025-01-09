@@ -1,3 +1,5 @@
+// TODO: a whole lotta cleaning
+
 const jsmediatags = window.jsmediatags;
 const average = array => array.reduce((a, b) => a + b) / array.length;
 const isOverflown = (element) => {
@@ -267,7 +269,7 @@ function init() {
             if(demo === "interpol"){
                 fileUrl = "demo/01.mp3";
             }else if(demo === "control"){
-                fileUrl = "demo/02.url";
+                fileUrl = "demo/02.mp3";
             }
             if(fileUrl){
                 // handleDemo(fileUrl)
