@@ -237,10 +237,11 @@ async function getFile(url){
 
     let data = await response.blob;
     let fileName = url.split('/').pop();
-    let metadata = {
-        type: "audio/mpeg"
-    };
-    return new File([data], fileName, metadata);
+    // let metadata = {
+    //     type: "audio/mpeg"
+    // };
+    // return new File([data], fileName, metadata);
+    return new File([data], fileName);
     ;
   } catch (error) {
     console.error(error.message);
@@ -270,7 +271,7 @@ function init() {
                 fileUrl = "demo/02.url";
             }
             if(fileUrl){
-                handleDemo(fileUrl)
+                // handleDemo(fileUrl)
                 let file = await getFile(fileUrl);
                 initPlayer(file);
             }
