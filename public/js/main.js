@@ -236,7 +236,8 @@ async function getFile(url){
     }
 
     let data = await response.blob;
-    return new File([data], "demo.mp3");
+    let fileName = url.split('/').pop();
+    return new File([data], fileName);
     ;
   } catch (error) {
     console.error(error.message);
