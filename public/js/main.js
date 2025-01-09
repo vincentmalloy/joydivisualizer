@@ -238,7 +238,7 @@ async function getFile(url){
     let data = await response.blob;
     let fileName = url.split('/').pop();
     let metadata = {
-        type: "audio/mpeg3"
+        type: "audio/mpeg"
     };
     return new File([data], fileName, metadata);
     ;
