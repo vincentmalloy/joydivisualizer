@@ -257,6 +257,7 @@ async function getFile(url){
 function init() {
     document.getElementById("credits").onclick = async function () {
         console.log("click")
+    sound = document.getElementById("sound");    //What element we want to play the audio.
         const searchParams = new URLSearchParams(window.location.search);
         if(searchParams.has("demo")){
             let demo = searchParams.get("demo");
