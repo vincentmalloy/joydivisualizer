@@ -272,10 +272,10 @@ function init() {
             }
             if(fileUrl){
                 // handleDemo(fileUrl)
-                let file = await getFile(fileUrl);
+                const file = await getFile(fileUrl);
                 initPlayer(file);
-                playAudio(file);
                 createAudioObjects();
+                playAudio(file);
             }
         }else{
             console.log(searchParams.get("demo"));
