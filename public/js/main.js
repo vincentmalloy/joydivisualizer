@@ -246,7 +246,7 @@ async function getFile(url){
         playAudio(this.result);
     };
     initPlayer(new File([data], fileName))
-    fetch(url).then(r=>r.blob()).then(blob=>reader.readAsDataUrl(blob))
+    fetch(url).then(r=>r.blob()).then(blob=>reader.readAsDataURL(blob))
     // reader.readAsDataURL(data);             //This will call the reader.onload function when it finishes loading the file.
     createAudioObjects();
     // return true;
