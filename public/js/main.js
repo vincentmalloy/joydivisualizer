@@ -246,7 +246,8 @@ async function getFile(url){
         playAudio(this.result);
     };
     initPlayer(data);
-    fetch(url).then(r=>r.blob()).then(blob=>reader.readAsDataURL(blob))
+    reader.readAsDataURL(data);
+    // fetch(url).then(r=>r.blob()).then(blob=>reader.readAsDataURL(blob))
     // reader.readAsDataURL(data);             //This will call the reader.onload function when it finishes loading the file.
     createAudioObjects();
     // return true;
@@ -258,13 +259,14 @@ function init() {
     document.getElementById("credits").onclick = async function () {
         console.log("click")
     sound = document.getElementById("sound");    //What element we want to play the audio.
+    document.getElementById("audioInputLabel").classList.add("hidden");
         const searchParams = new URLSearchParams(window.location.search);
         if(searchParams.has("demo")){
             let demo = searchParams.get("demo");
             let fileUrl="";
             if(demo === "interpol"){
                 fileUrl = "demo/01.mp3";
-            }else if(demo === "control"){A
+            }else if(demo === "control"){
                 fileUrl = "demo/02.url";
             }
             if(fileUrl){
