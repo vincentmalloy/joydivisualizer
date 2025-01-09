@@ -150,19 +150,19 @@ function toggleMute(sound) {
         unmuteElement.classList.remove("hidden");
     }
 }
-
-function updateProgress() {
-    let progressElement = document.getElementById("progress-played");
-    let progress = sound.currentTime / sound.duration;
-    progressElement.style.width = progress * 100 + "%";
-}
-audioInput.onchange = function () {
-    let inputLabel = document.getElementById("audioInputLabel");
-    inputLabel.classList.add("hidden");
-    sound = document.getElementById("sound");    //What element we want to play the audio.
-    let reader = new FileReader();                   //How we load the file.
-    reader.onload = function (e) {                    //What we do when we load a file.
-        sound.src = this.result;                       //Setting the source for the sound element.
+function initPlayer(file){
+    //read mp3 tags
+    jsmediatags.read(file, {
+        onSuccess: function (tag) {
+            var tags = tag.tags;
+            // alert(tags.artist + " - " + tags.title + ", " + tags.album);
+            updateTags(tags);
+        }
+    });
+    
+};
+function playAudio(src){
+        sound.src = src;                       //Setting the source for the sound element.
         sound.controls = false;                         //User can pause and play audio.
         sound.play();                                  //Start playing the tunes!
         let soundcontrolElement = document.getElementById("soundcontrol");
@@ -198,15 +198,23 @@ audioInput.onchange = function () {
             sound.currentTime = sound.duration * progress;
             updateProgress();
         }
+    
+}
+
+function updateProgress() {
+    let progressElement = document.getElementById("progress-played");
+    let progress = sound.currentTime / sound.duration;
+    progressElement.style.width = progress * 100 + "%";
+}
+audioInput.onchange = function () {
+    let inputLabel = document.getElementById("audioInputLabel");
+    inputLabel.classList.add("hidden");
+    sound = document.getElementById("sound");    //What element we want to play the audio.
+    let reader = new FileReader();                   //How we load the file.
+    reader.onload = function (e) {                    //What we do when we load a file.
+        playAudio(this.result);
     };
-    //read mp3 tags
-    jsmediatags.read(this.files[0], {
-        onSuccess: function (tag) {
-            var tags = tag.tags;
-            // alert(tags.artist + " - " + tags.title + ", " + tags.album);
-            updateTags(tags);
-        }
-    });
+    initPlayer(this.files[0]);
     reader.readAsDataURL(this.files[0]);             //This will call the reader.onload function when it finishes loading the file.
     createAudioObjects();
 };
@@ -221,6 +229,25 @@ function createAudioObjects() {
 }
 
 function init() {
+    document.getElementById("credits").onclick = function () {
+        console.log("click")
+        const searchParams = new URLSearchParams(window.location.search);
+        if(searchParams.has("demo")){
+            let demo = searchParams.get("demo");
+            let fileUrl="";
+            if(demo === "interpol"){
+                fileUrl = "demo/01.mp3";
+            }else if(demo === "control"){A
+                fileUrl = "demo/02.url";
+            }
+            if(fileUrl){
+                let data = fetch(fileUrl).blob;
+                initPlayer(new File(data, "01.mp3"));
+            }
+        }else{
+            console.log(searchParams.get("demo"));
+        }
+    };
     let wrap = document.getElementById('wrap');
     let wiggleData = new Array(audioRangeSize).fill(0);
     const getWiggle = (oldWiggle) => {
