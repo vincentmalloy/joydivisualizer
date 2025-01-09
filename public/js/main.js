@@ -228,8 +228,23 @@ function createAudioObjects() {
     soundDataArray = new Uint8Array(analyser.frequencyBinCount);
 }
 
+async function getFile(url){
+    try {
+    let response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    let data = await response.blob;
+    return new File([data], "demo.mp3");
+    ;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 function init() {
-    document.getElementById("credits").onclick = function () {
+    document.getElementById("credits").onclick = async function () {
         console.log("click")
         const searchParams = new URLSearchParams(window.location.search);
         if(searchParams.has("demo")){
@@ -241,8 +256,8 @@ function init() {
                 fileUrl = "demo/02.url";
             }
             if(fileUrl){
-                let data = await fetch(fileUrl).blob;
-                initPlayer(new File(data, "01.mp3"));
+                let file = await getFile(fileUrl);
+                initPlayer(file);
             }
         }else{
             console.log(searchParams.get("demo"));
