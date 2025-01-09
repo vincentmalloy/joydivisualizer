@@ -244,7 +244,7 @@ async function getFile(url){
   }
 }
 async function handleDemo(fileUrl) {
-  const file = await createFile(fileUrl);
+  const file = await getFile(fileUrl);
   const input = document.querySelector('input[type="file"]');
   const dt = new DataTransfer();
   dt.items.add(file);
