@@ -245,9 +245,10 @@ async function getFile(url){
     reader.onload = function (e) {                    //What we do when we load a file.
         playAudio(this.result);
     };
-    initPlayer(file);
+    initPlayer(new File([data], fileName))
     reader.readAsDataURL(data);             //This will call the reader.onload function when it finishes loading the file.
-    return new File([data], fileName);
+    createAudioObjects();
+    return true;
   } catch (error) {
     console.error(error.message);
   }
@@ -277,7 +278,6 @@ function init() {
             }
             if(fileUrl){
                 // handleDemo(fileUrl)
-                createAudioObjects();
                 const file = await getFile(fileUrl);
             }
         }else{
