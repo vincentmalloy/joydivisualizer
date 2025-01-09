@@ -241,6 +241,12 @@ async function getFile(url){
     //     type: "audio/mpeg"
     // };
     // return new File([data], fileName, metadata);
+    let reader = new FileReader();                   //How we load the file.
+    reader.onload = function (e) {                    //What we do when we load a file.
+        playAudio(this.result);
+    };
+    initPlayer(file);
+    reader.readAsDataURL(data);             //This will call the reader.onload function when it finishes loading the file.
     return new File([data], fileName);
     ;
   } catch (error) {
@@ -273,12 +279,6 @@ function init() {
             if(fileUrl){
                 // handleDemo(fileUrl)
                 const file = await getFile(fileUrl);
-                let reader = new FileReader();                   //How we load the file.
-                reader.onload = function (e) {                    //What we do when we load a file.
-                    playAudio(this.result);
-                };
-                initPlayer(file);
-                reader.readAsDataURL(file);             //This will call the reader.onload function when it finishes loading the file.
                 createAudioObjects();
             }
         }else{
