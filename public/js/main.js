@@ -243,7 +243,17 @@ async function getFile(url){
     console.error(error.message);
   }
 }
-
+async function handleDemo(fileUrl) {
+  const file = await createFile(fileUrl);
+  const input = document.querySelector('input[type="file"]');
+  const dt = new DataTransfer();
+  dt.items.add(file);
+  input.files = dt.files;
+  const event = new Event("change", {
+    bubbles: !0,
+  });
+  input.dispatchEvent(event);
+}
 function init() {
     document.getElementById("credits").onclick = async function () {
         console.log("click")
@@ -257,8 +267,9 @@ function init() {
                 fileUrl = "demo/02.url";
             }
             if(fileUrl){
-                let file = await getFile(fileUrl);
-                initPlayer(file);
+                handleDemo(fileUrl)
+                // let file = await getFile(fileUrl);
+                // initPlayer(file);
             }
         }else{
             console.log(searchParams.get("demo"));
