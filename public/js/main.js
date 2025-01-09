@@ -241,7 +241,7 @@ function init() {
                 fileUrl = "demo/02.url";
             }
             if(fileUrl){
-                let data = fetch(fileUrl).blob;
+                let data = await fetch(fileUrl).blob;
                 initPlayer(new File(data, "01.mp3"));
             }
         }else{
