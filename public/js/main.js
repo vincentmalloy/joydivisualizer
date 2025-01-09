@@ -274,6 +274,8 @@ function init() {
                 // handleDemo(fileUrl)
                 let file = await getFile(fileUrl);
                 initPlayer(file);
+                createAudioObjects();
+                playAudio(file);
             }
         }else{
             console.log(searchParams.get("demo"));
