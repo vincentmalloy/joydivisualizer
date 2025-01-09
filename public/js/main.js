@@ -246,24 +246,13 @@ async function getFile(url){
         playAudio(this.result);
     };
     initPlayer(new File([data], fileName))
-    fetch(url).then(r=>r.blob()).then(blob=>reader.readAsArrayBuffer(blob))
+    fetch(url).then(r=>r.blob()).then(blob=>reader.readAsDataUrl(blob))
     // reader.readAsDataURL(data);             //This will call the reader.onload function when it finishes loading the file.
     createAudioObjects();
-    return true;
+    // return true;
   } catch (error) {
     console.error(error.message);
   }
-}
-async function handleDemo(fileUrl) {
-  const file = await getFile(fileUrl);
-  const input = document.querySelector('input[type="file"]');
-  const dt = new DataTransfer();
-  dt.items.add(file);
-  input.files = dt.files;
-  const event = new Event("change", {
-    bubbles: !0,
-  });
-  input.dispatchEvent(event);
 }
 function init() {
     document.getElementById("credits").onclick = async function () {
