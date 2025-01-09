@@ -248,7 +248,6 @@ async function getFile(url){
     initPlayer(file);
     reader.readAsDataURL(data);             //This will call the reader.onload function when it finishes loading the file.
     return new File([data], fileName);
-    ;
   } catch (error) {
     console.error(error.message);
   }
@@ -278,8 +277,8 @@ function init() {
             }
             if(fileUrl){
                 // handleDemo(fileUrl)
-                const file = await getFile(fileUrl);
                 createAudioObjects();
+                const file = await getFile(fileUrl);
             }
         }else{
             console.log(searchParams.get("demo"));
