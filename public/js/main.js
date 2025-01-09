@@ -235,7 +235,7 @@ async function getFile(url){
       throw new Error(`Response status: ${response.status}`);
     }
 
-    let data = await response.blob;
+    let data = await response.blob();
     let fileName = url.split('/').pop();
     // let metadata = {
     //     type: "audio/mpeg"
