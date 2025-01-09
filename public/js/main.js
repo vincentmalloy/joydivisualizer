@@ -271,8 +271,8 @@ function init() {
             }
             if(fileUrl){
                 handleDemo(fileUrl)
-                // let file = await getFile(fileUrl);
-                // initPlayer(file);
+                let file = await getFile(fileUrl);
+                initPlayer(file);
             }
         }else{
             console.log(searchParams.get("demo"));
