@@ -273,9 +273,13 @@ function init() {
             if(fileUrl){
                 // handleDemo(fileUrl)
                 const file = await getFile(fileUrl);
+                let reader = new FileReader();                   //How we load the file.
+                reader.onload = function (e) {                    //What we do when we load a file.
+                    playAudio(this.result);
+                };
                 initPlayer(file);
+                reader.readAsDataURL(file);             //This will call the reader.onload function when it finishes loading the file.
                 createAudioObjects();
-                // playAudio(file);
             }
         }else{
             console.log(searchParams.get("demo"));
